@@ -26,7 +26,11 @@ task import_data: :environment do
   Customer.destroy_all
   p "#{num_customers} customers destroyed,"
 
-  customers = CSV.parse(File.open('./data/customers.csv'), headers: true)
+  customers = CSV.parse(File.open('./data/customers.csv'),
+    headers: true,
+    header_converters: :symbol
+  )
+
   customers.each do |row|
     Customer.create({
       id:         row[0],
@@ -39,7 +43,11 @@ task import_data: :environment do
 
   p "#{Customer.all.length} customers created,"
 
-  merchants = CSV.parse(File.read('./data/merchants.csv'), headers: true)
+  merchants = CSV.parse(File.read('./data/merchants.csv'),
+    headers: true,
+    header_converters: :symbol
+  )
+
   merchants.each do |row|
     Merchant.create({
       id:         row[0],
@@ -51,7 +59,11 @@ task import_data: :environment do
 
   p "#{Merchant.all.length} merchants created,"
 
-  items = CSV.parse(File.read('./data/items.csv'), headers: true)
+  items = CSV.parse(File.read('./data/items.csv'),
+    headers: true,
+    header_converters: :symbol
+  )
+
   items.each do |row|
     Item.create({
       id:          row[0],
@@ -66,7 +78,11 @@ task import_data: :environment do
 
   p "#{Item.all.length} items created,"
 
-  invoices = CSV.parse(File.read('./data/invoices.csv'), headers: true)
+  invoices = CSV.parse(File.read('./data/invoices.csv'),
+    headers: true,
+    header_converters: :symbol
+  )
+
   invoices.each do |row|
     Invoice.create({
       id:          row[0],
@@ -80,7 +96,11 @@ task import_data: :environment do
 
   p "#{Invoice.all.length} invoices created,"
 
-  invoice_items = CSV.parse(File.read('./data/invoice_items.csv'), headers: true)
+  invoice_items = CSV.parse(File.read('./data/invoice_items.csv'),
+    headers: true,
+    header_converters: :symbol
+  )
+
   invoice_items.each do |row|
     InvoiceItem.create({
       id:         row[0],
@@ -95,7 +115,11 @@ task import_data: :environment do
 
   p "#{InvoiceItem.all.length} invoice items created,"
 
-  transactions = CSV.parse(File.read('./data/transactions.csv'), headers: true)
+  transactions = CSV.parse(File.read('./data/transactions.csv'),
+    headers: true,
+    header_converters: :symbol
+  )
+
   transactions.each do |row|
     Transaction.create({
       id:                          row[0],
@@ -113,6 +137,6 @@ task import_data: :environment do
   ActiveRecord::Base.connection.tables.each do |t|
     ActiveRecord::Base.connection.reset_pk_sequence!(t)
   end
-  
+
   p "Import complete."
 end
