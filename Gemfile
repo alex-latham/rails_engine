@@ -14,6 +14,8 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.7'
 # Use rack CORS Middleware for resource shariing
 gem 'rack-cors'
+# Fast JSON
+gem 'fast_jsonapi'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -30,6 +32,9 @@ gem 'rack-cors'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :test do
@@ -37,6 +42,7 @@ group :test do
   gem 'capybara'
   gem 'simplecov', require: false
   gem 'shoulda-matchers'
+
 end
 
 group :development do
