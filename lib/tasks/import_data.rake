@@ -57,7 +57,7 @@ task import_data: :environment do
       id:          row[0],
       name:        row[1],
       description: row[2],
-      unit_price:  row[3].to_i / 100,
+      unit_price:  row[3].to_f / 100,
       merchant_id: row[4],
       created_at:  row[5],
       updated_at:  row[6]
@@ -110,5 +110,9 @@ task import_data: :environment do
 
   p "#{Transaction.all.length} transactions created,"
 
+  ActiveRecord::Base.connection.tables.each do |t|
+    ActiveRecord::Base.connection.reset_pk_sequence!(t)
+  end
+  
   p "Import complete."
 end
