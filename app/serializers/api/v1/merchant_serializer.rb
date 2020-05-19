@@ -1,4 +1,3 @@
-class Api::V1::MerchantSerializer
-  include FastJsonapi::ObjectSerializer
+class Api::V1::MerchantSerializer < Api::V1::BaseSerializer
   attributes :name
 end
