@@ -3,26 +3,29 @@ module Api
     class ItemsController < ApplicationController
       def show
         item = Item.find(params[:id])
-        render json: ItemSerializer.new(item).serializable_hash
+        render json: ItemSerializer.new(item)
       end
 
       def index
         items = Item.all
-        render json: ItemSerializer.new(items).serializable_hash
+        render json: ItemSerializer.new(items)
       end
 
       def create
         item = Item.new(item_params)
+        render json: ItemSerializer.new(item) if item.save
+      end
 
-        if item.save
-          render json: ItemSerializer.new(item).serializable_hash
-        end
+      def update
+        item = Item.find(params[:id])
+        item.update(item_params)
+        render json: ItemSerializer.new(item)
       end
 
       def destroy
         item = Item.find(params[:id])
         item.destroy
-        render json: ItemSerializer.new(item).serializable_hash
+        render json: ItemSerializer.new(item)
       end
 
       private

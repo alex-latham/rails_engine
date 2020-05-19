@@ -1,4 +1,3 @@
-class Api::V1::ItemSerializer
-  include FastJsonapi::ObjectSerializer
+class Api::V1::ItemSerializer < Api::V1::BaseSerializer
   attributes :name, :description, :unit_price, :merchant_id
 end

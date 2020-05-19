@@ -16,6 +16,8 @@ gem 'puma', '~> 3.7'
 gem 'rack-cors'
 # Fast JSON
 gem 'fast_jsonapi'
+# Rubocop
+gem 'rubocop', require: false
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
