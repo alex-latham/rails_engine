@@ -10,6 +10,8 @@ RSpec.describe "Visitor", type: :request do
 
     json = JSON.parse(response.body, symbolize_names: true)
 
+    expect(json[:data][:id]).to eq(item.id.to_s)
+
     updated_item_attributes.each do |attribute, value|
       expect(json[:data][:attributes][attribute.to_sym]).to eq(value)
     end

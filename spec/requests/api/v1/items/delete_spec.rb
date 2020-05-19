@@ -14,5 +14,7 @@ RSpec.describe "Visitor", type: :request do
     deleted_item_attributes.each do |attribute, value|
       expect(json[:data][:attributes][attribute.to_sym]).to eq(value)
     end
+
+    expect(Item.all).to eq([])
   end
 end
