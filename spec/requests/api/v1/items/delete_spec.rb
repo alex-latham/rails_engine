@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Visitor", type: :request do
   it 'can delete an item' do
     deleted_item = create(:item)
-    deleted_item_attributes = deleted_attributes = deleted_item.attributes.slice('name', 'description', 'unit_price', 'merchant_id')
+    deleted_item_attributes = deleted_item.attributes.slice('name', 'description', 'unit_price', 'merchant_id')
 
     delete api_v1_item_path(deleted_item)
 

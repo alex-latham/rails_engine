@@ -4,7 +4,7 @@ RSpec.describe "Visitor", type: :request do
   it 'can create an item' do
     merchant = create(:merchant)
     item = build(:item, merchant: merchant)
-    item_attributes = item_attributes = item.attributes.slice('name', 'description', 'unit_price', 'merchant_id')
+    item_attributes = item.attributes.slice('name', 'description', 'unit_price', 'merchant_id')
 
     post api_v1_items_path, params: item_attributes
 
