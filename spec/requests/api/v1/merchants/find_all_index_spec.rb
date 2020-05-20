@@ -6,9 +6,7 @@ RSpec.describe 'User' do
     merchant15 = create(:merchant, name: 'merchant1.5')
                  create(:merchant, name: 'merchant2.0')
 
-    params = {name: 'Merchant1'}
-
-    get api_v1_merchants_find_all_path(params)
+    get '/api/v1/merchants/find_all?name=Merchant1'
 
     json = JSON.parse(response.body, symbolize_names: true)
 

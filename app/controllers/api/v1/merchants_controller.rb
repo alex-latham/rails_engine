@@ -2,9 +2,7 @@ module Api
   module V1
     class MerchantsController < ApplicationController
       def show
-        merchant_ = if params[:name]
-                      Merchant.partial_matches(params[:name]).first
-                    elsif params[:item_id]
+        merchant_ = if params[:item_id]
                       Item.find(params[:item_id]).merchant
                     else
                       Merchant.find(params[:id])
@@ -13,11 +11,7 @@ module Api
       end
 
       def index
-        merchants = if params[:name]
-                      Merchant.partial_matches(params[:name])
-                    else
-                      Merchant.all
-                    end
+        merchants = Merchant.all
         render json: MerchantSerializer.new(merchants)
       end
 

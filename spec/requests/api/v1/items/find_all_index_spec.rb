@@ -6,9 +6,7 @@ RSpec.describe 'User' do
     item15 = create(:item, name: 'item1.5')
              create(:item, name: 'item2.0')
 
-    params = {name: 'Item1'}
-
-    get api_v1_items_find_all_path(params)
+    get '/api/v1/items/find_all?name=Item1'
 
     json = JSON.parse(response.body, symbolize_names: true)
 

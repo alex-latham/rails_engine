@@ -2,18 +2,12 @@ module Api
   module V1
     class ItemsController < ApplicationController
       def show
-        item_ = if params[:name]
-                  Item.partial_matches(params[:name]).first
-                else
-                  Item.find(params[:id])
-                end
-        render json: ItemSerializer.new(item_)
+        item = Item.find(params[:id])
+        render json: ItemSerializer.new(item)
       end
 
       def index
-        items = if params[:name]
-                  Item.partial_matches(params[:name])
-                elsif params[:merchant_id]
+        items = if params[:merchant_id]
                   Item.where(merchant_id: params[:merchant_id])
                 else
                   Item.all
