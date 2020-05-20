@@ -2,7 +2,10 @@ module Api
   module V1
     class MerchantsController < ApplicationController
       def show
-        merchant_ = if params[:item_id]
+        merchant_ = if params[:name]
+                      name = params[:name].downcase
+                      Merchant.where('LOWER(name) like ?', "%#{name}%").first
+                    elsif params[:item_id]
                       Item.find(params[:item_id]).merchant
                     else
                       Merchant.find(params[:id])
