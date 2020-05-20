@@ -8,7 +8,7 @@ RSpec.describe 'Visitor', type: :request do
 
     json = JSON.parse(response.body, symbolize_names: true)
 
-    expect(json[:data].length).to eq(2)
+    expect(json[:data].length).to                        eq(2)
 
     expect(json[:data][0][:type]).to                     eq('item')
     expect(json[:data][0][:id]).to                       eq(items[0].id.to_s)
