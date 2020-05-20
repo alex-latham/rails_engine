@@ -8,6 +8,7 @@ RSpec.describe "Visitor", type: :request do
 
     json = JSON.parse(response.body, symbolize_names: true)
 
+    expect(json[:data][:type]).to              eq("merchant")
     expect(json[:data][:attributes][:name]).to eq(new_merchant.name)
 
     merchant = Merchant.last

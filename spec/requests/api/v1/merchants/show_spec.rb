@@ -7,8 +7,9 @@ RSpec.describe "Visitor", type: :request do
     get api_v1_merchant_path(merchant)
 
     json = JSON.parse(response.body, symbolize_names: true)
-
-    expect(json[:data][:id]).to eq(merchant.id.to_s)
+    
+    expect(json[:data][:type]).to              eq("merchant")
+    expect(json[:data][:id]).to                eq(merchant.id.to_s)
     expect(json[:data][:attributes][:name]).to eq(merchant.name)
   end
 end

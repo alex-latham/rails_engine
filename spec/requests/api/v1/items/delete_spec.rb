@@ -3,18 +3,17 @@ require 'rails_helper'
 RSpec.describe "Visitor", type: :request do
   it 'can delete an item' do
     deleted_item = create(:item)
-    deleted_item_attributes = deleted_item.attributes.slice('name', 'description', 'unit_price', 'merchant_id')
 
     delete api_v1_item_path(deleted_item)
 
     json = JSON.parse(response.body, symbolize_names: true)
 
-    expect(json[:data][:id]).to eq(deleted_item.id.to_s)
-
-    deleted_item_attributes.each do |attribute, value|
-      expect(json[:data][:attributes][attribute.to_sym]).to eq(value)
-    end
-
-    expect(Item.all).to eq([])
+    expect(json[:data][:type]).to                     eq("item")
+    expect(json[:data][:id]).to                       eq(deleted_item.id.to_s)
+    expect(json[:data][:attributes][:name]).to        eq(deleted_item.name)
+    expect(json[:data][:attributes][:description]).to eq(deleted_item.description)
+    expect(json[:data][:attributes][:unit_price]).to  eq(deleted_item.unit_price)
+    expect(json[:data][:attributes][:merchant_id]).to eq(deleted_item.merchant_id)
+    expect(Item.all.length).to                        eq(0)
   end
 end

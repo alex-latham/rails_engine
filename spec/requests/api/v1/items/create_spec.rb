@@ -4,19 +4,22 @@ RSpec.describe "Visitor", type: :request do
   it 'can create an item' do
     merchant = create(:merchant)
     new_item = build(:item, merchant: merchant)
-    new_item_attributes = new_item.attributes.slice('name', 'description', 'unit_price', 'merchant_id')
 
-    post api_v1_items_path, params: new_item_attributes
+    post api_v1_items_path, params: new_item.attributes
 
     json = JSON.parse(response.body, symbolize_names: true)
 
-    new_item_attributes.each do |attribute, value|
-      expect(json[:data][:attributes][attribute.to_sym]).to eq(value)
-    end
+    expect(json[:data][:type]).to                     eq("item")
+    expect(json[:data][:attributes][:name]).to        eq(new_item.name)
+    expect(json[:data][:attributes][:description]).to eq(new_item.description)
+    expect(json[:data][:attributes][:unit_price]).to  eq(new_item.unit_price)
+    expect(json[:data][:attributes][:merchant_id]).to eq(new_item.merchant_id)
 
     item = Item.last
-    item_attributes = item.attributes.slice('name', 'description', 'unit_price', 'merchant_id')
 
-    expect(item_attributes).to eq(new_item_attributes)
+    expect(item.name).to        eq(new_item.name)
+    expect(item.description).to eq(new_item.description)
+    expect(item.unit_price).to  eq(new_item.unit_price)
+    expect(item.merchant_id).to eq(new_item.merchant_id)
   end
 end
