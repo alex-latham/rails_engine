@@ -6,7 +6,7 @@ RSpec.describe 'User' do
     merchant15 = create(:merchant, name: 'merchaNt1.5')
                  create(:merchant, name: 'merchant2.0')
 
-    params = {name: "Chant1"}
+    params = {name: 'Chant1'}
 
     get api_v1_merchants_find_all_path(params)
 
