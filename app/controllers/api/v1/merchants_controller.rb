@@ -11,7 +11,12 @@ module Api
       end
 
       def index
-        merchants = Merchant.all
+        merchants = if params[:name]
+                      name = params[:name].downcase
+                      Merchant.where('LOWER(name) like ?', "%#{name}%")
+                    else
+                      Merchant.all
+                    end
         render json: MerchantSerializer.new(merchants)
       end
 
