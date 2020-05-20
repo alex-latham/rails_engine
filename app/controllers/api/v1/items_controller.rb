@@ -7,11 +7,11 @@ module Api
       end
 
       def index
-        if params[:merchant_id]
-          items = Item.where(merchant_id: params[:merchant_id])
-        else
-          items = Item.all
-        end
+        items = if params[:merchant_id]
+                  Item.where(merchant_id: params[:merchant_id])
+                else
+                  Item.all
+                end
         render json: ItemSerializer.new(items)
       end
 
