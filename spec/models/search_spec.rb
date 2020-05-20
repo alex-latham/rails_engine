@@ -12,6 +12,7 @@ RSpec.describe Search, type: :model do
 
       merchant_results = Search.partial_name(Merchant, 'Ant1')
       item_results = Search.partial_name(Item, 'Item1')
+      
       expect(merchant_results).to include(merchant10, merchant15)
       expect(item_results).to include(item10, item15)
     end
