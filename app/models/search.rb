@@ -1,5 +1,5 @@
 class Search < ApplicationRecord
-  def self.partial_name(resource_class, name)
-    resource_class.where('LOWER(name) like ?', "%#{name.downcase}%")
+  def self.partial_name(resource, name)
+    resource.where('LOWER(name) LIKE ?', "%#{name.downcase}%")
   end
 end

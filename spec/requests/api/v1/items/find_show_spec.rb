@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'User' do
-  it 'can find a list of items that contain a fragment, case insensitive' do
+  it 'can find an item that contains a fragment, case insensitive' do
     item10 = create(:item, name: 'ITEM1.0')
              create(:item, name: 'item1.5')
              create(:item, name: 'item2.0')
