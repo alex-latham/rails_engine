@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Visitor", type: :request do
+RSpec.describe 'Visitor', type: :request do
   it 'can create an item' do
     merchant = create(:merchant)
     new_item = build(:item, merchant: merchant)
@@ -9,7 +9,7 @@ RSpec.describe "Visitor", type: :request do
 
     json = JSON.parse(response.body, symbolize_names: true)
 
-    expect(json[:data][:type]).to                     eq("item")
+    expect(json[:data][:type]).to                     eq('item')
     expect(json[:data][:attributes][:name]).to        eq(new_item.name)
     expect(json[:data][:attributes][:description]).to eq(new_item.description)
     expect(json[:data][:attributes][:unit_price]).to  eq(new_item.unit_price)

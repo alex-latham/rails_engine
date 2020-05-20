@@ -1,3 +1,3 @@
-class Api::V1::BaseSerializer
+class BaseSerializer
   include FastJsonapi::ObjectSerializer
 end

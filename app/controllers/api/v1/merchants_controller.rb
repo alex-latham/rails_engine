@@ -2,12 +2,8 @@ module Api
   module V1
     class MerchantsController < ApplicationController
       def show
-        merchant_ = if params[:item_id]
-                      Item.find(params[:item_id]).merchant
-                    else
-                      Merchant.find(params[:id])
-                    end
-        render json: MerchantSerializer.new(merchant_)
+        merchant = Merchant.find(params[:id])
+        render json: MerchantSerializer.new(merchant)
       end
 
       def index
@@ -16,19 +12,17 @@ module Api
       end
 
       def create
-        merchant = Merchant.new(merchant_params)
-        render json: MerchantSerializer.new(merchant) if merchant.save
+        merchant = Merchant.create(merchant_params)
+        render json: MerchantSerializer.new(merchant)
       end
 
       def update
-        merchant = Merchant.find(params[:id])
-        merchant.update(merchant_params)
+        merchant = Merchant.update(params[:id], merchant_params)
         render json: MerchantSerializer.new(merchant)
       end
 
       def destroy
-        merchant = Merchant.find(params[:id])
-        merchant.destroy
+        merchant = Merchant.destroy(params[:id])
         render json: MerchantSerializer.new(merchant)
       end
 
