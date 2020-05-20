@@ -2,13 +2,13 @@ module Api
   module V1
     class ItemsController < ApplicationController
       def show
-        item = if params[:name]
-                   name = params[:name].downcase
-                   Item.where('LOWER(name) like ?', "%#{name}%").first
+        item_ = if params[:name]
+                  name = params[:name].downcase
+                  Item.where('LOWER(name) like ?', "%#{name}%").first
                 else
                   Item.find(params[:id])
                 end
-        render json: ItemSerializer.new(item)
+        render json: ItemSerializer.new(item_)
       end
 
       def index
