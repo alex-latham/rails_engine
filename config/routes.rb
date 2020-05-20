@@ -6,7 +6,7 @@ Rails.application.routes.draw do
         get :find_all, to: 'searches#index'
       end
       resources :items, only: [:show, :index, :create, :update, :destroy] do
-        get :merchant, to: 'items/merchants#show'
+        get :merchant, to: 'merchants#show'
       end
       namespace :merchants do
         get :find, to: 'searches#show'
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
         get :most_revenue, to: 'revenues#index'
       end
       resources :merchants, only: [:show, :index, :create, :update, :destroy] do
-        get :items, to: 'merchants/items#index'
+        resources :items, only: [:index]
       end
     end
   end
