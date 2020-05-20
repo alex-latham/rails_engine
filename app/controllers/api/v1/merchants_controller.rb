@@ -3,8 +3,7 @@ module Api
     class MerchantsController < ApplicationController
       def show
         merchant_ = if params[:name]
-                      name = params[:name].downcase
-                      Merchant.where('LOWER(name) like ?', "%#{name}%").first
+                      Merchant.partial_matches(params[:name]).first
                     elsif params[:item_id]
                       Item.find(params[:item_id]).merchant
                     else
@@ -15,8 +14,7 @@ module Api
 
       def index
         merchants = if params[:name]
-                      name = params[:name].downcase
-                      Merchant.where('LOWER(name) like ?', "%#{name}%")
+                      Merchant.partial_matches(params[:name])
                     else
                       Merchant.all
                     end

@@ -3,8 +3,7 @@ module Api
     class ItemsController < ApplicationController
       def show
         item_ = if params[:name]
-                  name = params[:name].downcase
-                  Item.where('LOWER(name) like ?', "%#{name}%").first
+                  Item.partial_matches(params[:name]).first
                 else
                   Item.find(params[:id])
                 end
@@ -13,8 +12,7 @@ module Api
 
       def index
         items = if params[:name]
-                  name = params[:name].downcase
-                  Item.where('LOWER(name) like ?', "%#{name}%")
+                  Item.partial_matches(params[:name])
                 elsif params[:merchant_id]
                   Item.where(merchant_id: params[:merchant_id])
                 else
