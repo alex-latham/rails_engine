@@ -10,10 +10,12 @@ RSpec.describe "Visitor", type: :request do
 
     expect(json[:data].length).to eq(2)
 
-    json[:data].each_with_index do |merchant, i|
-      expect(merchant[:type]).to              eq("merchant")
-      expect(merchant[:id]).to                eq(merchants[i].id.to_s)
-      expect(merchant[:attributes][:name]).to eq(merchants[i].name)
-    end
+    expect(json[:data][0][:type]).to              eq("merchant")
+    expect(json[:data][0][:id]).to                eq(merchants[0].id.to_s)
+    expect(json[:data][0][:attributes][:name]).to eq(merchants[0].name)
+
+    expect(json[:data][1][:type]).to              eq("merchant")
+    expect(json[:data][1][:id]).to                eq(merchants[1].id.to_s)
+    expect(json[:data][1][:attributes][:name]).to eq(merchants[1].name)
   end
 end
