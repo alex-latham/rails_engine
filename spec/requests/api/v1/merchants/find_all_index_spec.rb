@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe 'User' do
   it 'can find a list of merchants that contain a fragment, case insensitive' do
-    merchant10 = create(:merchant, name: 'merchant1.0')
-    merchant15 = create(:merchant, name: 'merchaNt1.5')
+    merchant10 = create(:merchant, name: 'MERCHANT1.0')
+    merchant15 = create(:merchant, name: 'merchant1.5')
                  create(:merchant, name: 'merchant2.0')
 
-    params = {name: 'Chant1'}
+    params = {name: 'Merchant1'}
 
     get api_v1_merchants_find_all_path(params)
 

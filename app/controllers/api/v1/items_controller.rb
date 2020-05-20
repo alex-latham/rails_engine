@@ -2,12 +2,20 @@ module Api
   module V1
     class ItemsController < ApplicationController
       def show
-        item = Item.find(params[:id])
+        item = if params[:name]
+                   name = params[:name].downcase
+                   Item.where('LOWER(name) like ?', "%#{name}%").first
+                else
+                  Item.find(params[:id])
+                end
         render json: ItemSerializer.new(item)
       end
 
       def index
-        items = if params[:merchant_id]
+        items = if params[:name]
+                  name = params[:name].downcase
+                  Item.where('LOWER(name) like ?', "%#{name}%")
+                elsif params[:merchant_id]
                   Item.where(merchant_id: params[:merchant_id])
                 else
                   Item.all
