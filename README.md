@@ -19,7 +19,7 @@ $ rake import_data
 There are a few ways to test this app:
 1. Test the API endpoints by starting a localhost server with `$ rails server -p 3000` and hitting the endpoints listed below with a browser or other client such as Postman. Close the server with ctrl+c.
 2. Run the included test suite: `$ bundle exec rspec`
-3. Run the (Rails Driver)[https://github.com/turingschool-examples/rails_driver] test suite:
+3. Run the [Rails Driver](https://github.com/turingschool-examples/rails_driver) test suite:
 ```
 $ cd ..
 $ git clone git@github.com:turingschool-examples/rails_driver.git
