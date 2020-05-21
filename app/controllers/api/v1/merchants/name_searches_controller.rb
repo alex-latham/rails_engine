@@ -1,6 +1,6 @@
 module Api
   module V1
-    class Merchants::SearchesController < ApplicationController
+    class Merchants::NameSearchesController < ApplicationController
       def show
         merchant = Search.partial_name(Merchant, params[:name]).first
         render json: MerchantSerializer.new(merchant).serialized_json
