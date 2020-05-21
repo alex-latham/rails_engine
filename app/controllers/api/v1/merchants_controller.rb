@@ -16,8 +16,8 @@ module Api
       end
 
       def create
-        merchant = Merchant.create(merchant_params)
-        render json: MerchantSerializer.new(merchant)
+        merchant = Merchant.new(merchant_params)
+        render json: MerchantSerializer.new(merchant) if merchant.save
       end
 
       def update
