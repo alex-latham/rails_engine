@@ -14,8 +14,6 @@ class Revenue
     new(revenue)
   end
 
-  private
-
   def self.date_range(start_date, end_date)
     Date.parse(start_date).beginning_of_day..Date.parse(end_date).end_of_day
   end
