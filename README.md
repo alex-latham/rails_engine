@@ -1,6 +1,6 @@
 # Rails Engine
 
-Rails Engine is a Turing School [module 3 project](https://backend.turing.io/module3/projects/rails_engine/) to explore API creation. It is tested against, in addition to the contained spec, the API consumption spec of [Rails Driver](https://github.com/turingschool-examples/rails_driver).
+Rails Engine is a Turing School [module 3 project](https://backend.turing.io/module3/projects/rails_engine/) to explore API creation. It is tested against, in addition to the contained spec, the API consumption spec of [Rails Driver](https://github.com/alex-latham/rails_driver).
 
 ## Setup
 The `import_data` rake task may take up to two minutes to complete. 5595 + 21687 + 4843 + 2483 + 100 + 1000 = 35708
@@ -19,10 +19,10 @@ $ rake import_data
 There are a few ways to test this app:
 1. Test the API endpoints by starting a localhost server with `$ rails server -p 3000` and hitting the endpoints listed below with a browser or other client such as Postman. Close the server with ctrl+c.
 2. Run the included test suite: `$ bundle exec rspec`
-3. Run the [Rails Driver](https://github.com/turingschool-examples/rails_driver) test suite:
+3. Run the [Rails Driver](https://github.com/alex-latham/rails_driver) test suite:
 ```
 $ cd ..
-$ git clone git@github.com:turingschool-examples/rails_driver.git
+$ git clone git@github.com:alex-latham/rails_driver.git
 $ cd rails_driver
 $ bundle install
 $ figaro install
