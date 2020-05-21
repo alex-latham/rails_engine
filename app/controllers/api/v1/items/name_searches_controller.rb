@@ -1,6 +1,6 @@
 module Api
   module V1
-    class Items::SearchesController < ApplicationController
+    class Items::NameSearchesController < ApplicationController
       def show
         item = Search.partial_name(Item, params[:name]).first
         render json: ItemSerializer.new(item).serialized_json
